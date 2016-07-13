@@ -17,7 +17,6 @@ package org.trustedanalytics.services.downloader.core;
 
 import org.trustedanalytics.services.downloader.protocols.FileConnector;
 import org.trustedanalytics.services.downloader.protocols.HttpConnector;
-import org.trustedanalytics.services.downloader.protocols.ObjectStoreConnector;
 
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
@@ -45,7 +44,7 @@ public class IOStreamsProvider {
 
     @Autowired
     public IOStreamsProvider(FileConnector fileConnector, HttpConnector httpConnector,
-            ObjectStoreConnector objectStoreConnector) {
+            Connector objectStoreConnector) {
         this(Lists.newArrayList(fileConnector, httpConnector, objectStoreConnector));
     }
 

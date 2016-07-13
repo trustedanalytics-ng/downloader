@@ -15,25 +15,32 @@
  */
 package org.trustedanalytics.services.downloader;
 
+import java.util.UUID;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+import javax.annotation.Resource;
+
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 import org.trustedanalytics.cloud.auth.AuthTokenRetriever;
 import org.trustedanalytics.cloud.auth.OAuth2TokenRetriever;
 import org.trustedanalytics.services.downloader.core.CallbackingRequestStatusObserver;
+import org.trustedanalytics.services.downloader.core.Connector;
 import org.trustedanalytics.services.downloader.core.DownloadingStrategy;
 import org.trustedanalytics.services.downloader.core.GzipStreamDecoder;
 import org.trustedanalytics.services.downloader.core.RequestStatusObserverFactory;
 import org.trustedanalytics.services.downloader.core.SimpleDownloadingStrategy;
 import org.trustedanalytics.services.downloader.core.StreamDecoder;
 import org.trustedanalytics.services.downloader.core.ZipStreamDecoder;
+import org.trustedanalytics.services.downloader.protocols.ObjectStoreConnector;
 import org.trustedanalytics.services.downloader.store.DownloadRequestsStore;
 import org.trustedanalytics.services.downloader.store.MemoryDownloadRequestStore;
-
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import javax.annotation.Resource;
+import org.trustedanalytics.store.TokenizedObjectStoreFactory;
+import org.trustedanalytics.store.config.HdfsProperties;
+import org.trustedanalytics.store.hdfs.KerberosClientConfiguration;
 
 @Configuration
 @ComponentScan(basePackages = {"org.trustedanalytics.clients"})
@@ -83,5 +90,10 @@ public class DownloaderConfiguration {
     @Bean
     public DownloadRequestsStore downloadRequestsStore() {
         return new MemoryDownloadRequestStore();
+    }
+    
+    @Bean
+    public Connector objectStoreConnector(TokenizedObjectStoreFactory<UUID, String> objectStoreFactory) {
+      return new ObjectStoreConnector(objectStoreFactory);
     }
 }

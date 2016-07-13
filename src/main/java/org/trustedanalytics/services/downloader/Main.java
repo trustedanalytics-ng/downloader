@@ -15,17 +15,16 @@
  */
 package org.trustedanalytics.services.downloader;
 
-import org.trustedanalytics.utils.errorhandling.EnableRestErrorHandling;
-
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.cloud.security.oauth2.resource.EnableOAuth2Resource;
 import org.springframework.context.annotation.ComponentScan;
+import org.trustedanalytics.utils.errorhandling.EnableRestErrorHandling;
 
 @EnableOAuth2Resource
 @EnableAutoConfiguration
-@ComponentScan("org.trustedanalytics")
 @EnableRestErrorHandling
+@ComponentScan("org.trustedanalytics")
 public class Main {
     public static void main(String[] args) {
         SpringApplication.run(Main.class, args);

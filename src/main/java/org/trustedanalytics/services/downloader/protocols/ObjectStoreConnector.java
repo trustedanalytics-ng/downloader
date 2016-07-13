@@ -19,8 +19,6 @@ import org.trustedanalytics.services.downloader.core.Connector;
 import org.trustedanalytics.store.TokenizedObjectStoreFactory;
 
 import com.google.common.collect.ImmutableList;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import javax.security.auth.login.LoginException;
 import java.io.IOException;
@@ -30,14 +28,12 @@ import java.net.URI;
 import java.util.Properties;
 import java.util.UUID;
 
-@Component
 public class ObjectStoreConnector implements Connector {
 
     private static final ImmutableList<String> SUPPORTED_SCHEMES = ImmutableList.of("os");
 
-    private TokenizedObjectStoreFactory<UUID, String> objectStoreFactory;
+    private final TokenizedObjectStoreFactory<UUID, String> objectStoreFactory;
 
-    @Autowired
     public ObjectStoreConnector(TokenizedObjectStoreFactory<UUID, String> objectStoreFactory) {
         this.objectStoreFactory = objectStoreFactory;
     }

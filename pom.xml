@@ -24,6 +24,8 @@
         <jacoco-measurement-branches>0.437</jacoco-measurement-branches>            <!-- Value <0.000, 1.000>, at least 3 places after coma -->
         <jacoco-measurement-lines>0.477</jacoco-measurement-lines>                  <!-- Value <0.000, 1.000>, at least 3 places after coma -->
         <jacoco-measurement-classes>0.720</jacoco-measurement-classes>              <!-- Value <0.000, 1.000>, at least 3 places after coma -->
+        <docker.imageName>${project.artifactId}</docker.imageName>
+        <docker.registry>tapimages.us.enableiot.com:8080</docker.registry>
     </properties>
 
     <build>
@@ -88,6 +90,27 @@
                     </execution>
                 </executions>
             </plugin>
+  <plugin>
+      <groupId>com.spotify</groupId>
+      <artifactId>docker-maven-plugin</artifactId>
+      <configuration>
+        <imageName>${docker.imageName}</imageName>
+        <baseImage>${docker.registry}/tap-base-java:java8-jessie</baseImage>
+        <cmd>java $JAVA_OPTS -jar /${project.build.finalName}.jar</cmd>
+        <resources>
+           <resource>
+             <targetPath>/</targetPath>
+             <directory>${project.build.directory}</directory>
+             <include>${project.build.finalName}.jar</include>
+           </resource>
+        </resources>
+        <env>
+          <PORT>80</PORT>
+          <JAVA_OPTS>-Xmx500m</JAVA_OPTS>
+        </env>
+      </configuration>
+    </plugin>
+
         </plugins>
 
         <pluginManagement>
@@ -179,7 +202,7 @@
         <dependency>
             <groupId>org.trustedanalytics</groupId>
             <artifactId>object-store</artifactId>
-            <version>0.4.16</version>
+            <version>0.4.18</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.slf4j</groupId>
