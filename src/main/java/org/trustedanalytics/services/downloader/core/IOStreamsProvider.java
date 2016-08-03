@@ -41,7 +41,6 @@ import java.util.Properties;
 @Component
 public class IOStreamsProvider {
 
-    // TODO: inject list of connectors
     private Map<String, Connector> supportedSchemes;
 
     @Autowired

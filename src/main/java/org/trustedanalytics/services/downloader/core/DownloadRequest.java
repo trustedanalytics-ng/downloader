@@ -25,7 +25,6 @@ import java.util.Objects;
 import java.util.UUID;
 import java.util.concurrent.atomic.AtomicLong;
 
-// TODO: add parameters for source. For example credentials
 public class DownloadRequest {
 
     public static enum State {
@@ -84,7 +83,6 @@ public class DownloadRequest {
     }
 
     public void setState(State newState) {
-        // TODO: should be atomic?
         this.state = newState;
     }
 
