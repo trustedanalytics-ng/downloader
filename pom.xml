@@ -7,7 +7,7 @@
         <connection>scm:git:git@downloader:trustedanalytics/downloader.git</connection>
         <tag>HEAD</tag>
     </scm>
-    <version>0.8.0</version>
+    <version>0.8.1</version>
     <name>Downloader</name>
     <description>Downloader</description>
 
@@ -93,6 +93,7 @@
   <plugin>
       <groupId>com.spotify</groupId>
       <artifactId>docker-maven-plugin</artifactId>
+      <version>0.4.12</version>
       <configuration>
         <imageName>${docker.imageName}</imageName>
         <baseImage>${docker.registry}/tap-base-java:java8-jessie</baseImage>
@@ -108,6 +109,7 @@
           <PORT>80</PORT>
           <JAVA_OPTS>-Xmx500m</JAVA_OPTS>
         </env>
+	<useConfigFile>true</useConfigFile>
       </configuration>
     </plugin>
 
@@ -146,18 +148,13 @@
                 </plugin>
             </plugins>
         </pluginManagement>
-
     </build>
-
-
     <dependencies>
-
         <dependency>
             <groupId>org.apache.tomcat.embed</groupId>
             <artifactId>tomcat-embed-jasper</artifactId>
             <scope>provided</scope>
         </dependency>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -213,7 +210,6 @@
                     <groupId>tomcat</groupId>
                 </exclusion>
             </exclusions>
-
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
