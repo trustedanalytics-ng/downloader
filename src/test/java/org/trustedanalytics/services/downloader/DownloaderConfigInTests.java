@@ -15,6 +15,11 @@
  */
 package org.trustedanalytics.services.downloader;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.trustedanalytics.cloud.auth.AuthTokenRetriever;
 import org.trustedanalytics.services.downloader.core.RequestStatusObserver;
 import org.trustedanalytics.services.downloader.core.RequestStatusObserverFactory;
@@ -24,11 +29,6 @@ import org.trustedanalytics.store.MemoryObjectStore;
 import org.trustedanalytics.store.ObjectStore;
 import org.trustedanalytics.store.ObjectStoreFactory;
 import org.trustedanalytics.store.TokenizedObjectStoreFactory;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
 
 import javax.annotation.Resource;
 import java.util.UUID;
@@ -62,6 +62,7 @@ public class DownloaderConfigInTests {
         return new MemoryObjectStore();
     }
 
+    @Primary
     @Bean
     public ObjectStoreFactory<UUID> objectStoreSupplier(ObjectStore objectStore) {
         return (x) -> objectStore;

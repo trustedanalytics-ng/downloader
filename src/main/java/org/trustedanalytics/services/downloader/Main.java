@@ -24,7 +24,7 @@ import org.trustedanalytics.utils.errorhandling.EnableRestErrorHandling;
 @EnableOAuth2Resource
 @EnableAutoConfiguration
 @EnableRestErrorHandling
-@ComponentScan("org.trustedanalytics")
+@ComponentScan("org.trustedanalytics.services.downloader")
 public class Main {
     public static void main(String[] args) {
         SpringApplication.run(Main.class, args);

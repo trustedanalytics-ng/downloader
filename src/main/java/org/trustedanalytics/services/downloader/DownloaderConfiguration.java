@@ -21,6 +21,7 @@ import java.util.concurrent.Executors;
 
 import javax.annotation.Resource;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -41,7 +42,9 @@ import org.trustedanalytics.services.downloader.store.MemoryDownloadRequestStore
 import org.trustedanalytics.store.TokenizedObjectStoreFactory;
 import org.trustedanalytics.store.config.HdfsProperties;
 import org.trustedanalytics.store.hdfs.KerberosClientConfiguration;
+import org.trustedanalytics.store.EnableObjectStore;
 
+@EnableObjectStore
 @Configuration
 @ComponentScan(basePackages = {"org.trustedanalytics.clients"})
 public class DownloaderConfiguration {
@@ -50,6 +53,9 @@ public class DownloaderConfiguration {
 
     @Resource(name = "executorForIO")
     ExecutorService iOExecutor;
+
+    @Autowired
+    private KerberosClientConfiguration krbProps;
 
     @Bean(name = {"topLevelExecutors"}, destroyMethod = "shutdown")
     public ExecutorService topLevelExecutorService() {
