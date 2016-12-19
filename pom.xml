@@ -7,7 +7,7 @@
         <connection>scm:git:git@downloader:trustedanalytics/downloader.git</connection>
         <tag>HEAD</tag>
     </scm>
-    <version>0.8.5</version>
+    <version>0.8.6</version>
     <name>Downloader</name>
     <description>Downloader</description>
 
@@ -25,7 +25,6 @@
         <jacoco-measurement-lines>0.477</jacoco-measurement-lines>                  <!-- Value <0.000, 1.000>, at least 3 places after coma -->
         <jacoco-measurement-classes>0.720</jacoco-measurement-classes>              <!-- Value <0.000, 1.000>, at least 3 places after coma -->
         <docker.imageName>${project.artifactId}</docker.imageName>
-        <docker.registry>tapimages.us.enableiot.com:8080</docker.registry>
     </properties>
 
     <build>
@@ -95,7 +94,7 @@
                 <version>0.4.12</version>
                 <configuration>
                     <imageName>${docker.imageName}</imageName>
-                    <baseImage>${docker.registry}/tap-base-java:java8-jessie</baseImage>
+                    <baseImage>tapimages:8080/tap-base-java:java8-jessie</baseImage>
                     <cmd>java $JAVA_OPTS -jar /${project.build.finalName}.jar</cmd>
                     <resources>
                         <resource>
