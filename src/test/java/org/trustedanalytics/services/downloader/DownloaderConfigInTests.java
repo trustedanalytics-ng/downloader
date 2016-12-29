@@ -31,7 +31,6 @@ import org.trustedanalytics.store.ObjectStoreFactory;
 import org.trustedanalytics.store.TokenizedObjectStoreFactory;
 
 import javax.annotation.Resource;
-import java.util.UUID;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -64,12 +63,12 @@ public class DownloaderConfigInTests {
 
     @Primary
     @Bean
-    public ObjectStoreFactory<UUID> objectStoreSupplier(ObjectStore objectStore) {
+    public ObjectStoreFactory<String> objectStoreSupplier(ObjectStore objectStore) {
         return (x) -> objectStore;
     }
 
     @Bean
-    public TokenizedObjectStoreFactory<UUID, String> objectStoreFactory(ObjectStore objectStore) {
+    public TokenizedObjectStoreFactory<String, String> objectStoreFactory(ObjectStore objectStore) {
         return (x, y) -> objectStore;
     }
 

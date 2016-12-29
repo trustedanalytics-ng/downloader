@@ -31,7 +31,6 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.security.auth.login.LoginException;
 import java.io.IOException;
 import java.util.NoSuchElementException;
-import java.util.UUID;
 
 import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
 import static org.springframework.http.HttpStatus.NOT_FOUND;
@@ -42,14 +41,14 @@ public class RestFileStoreService {
     private static final Logger LOGGER = LoggerFactory.getLogger(RestFileStoreService.class);
 
     @Autowired
-    private ObjectStoreFactory<UUID> objectStoreFactory;
+    private ObjectStoreFactory<String> objectStoreFactory;
 
     @ApiOperation(
             value = "Removes previously downloaded file",
             notes = "Privilege level: Consumer of this endpoint must be a member of specified organization based on valid access token"
     )
     @RequestMapping(value = "/rest/filestore/orgId/{orgId}/fileId/{id}/", method = RequestMethod.DELETE)
-    public void delete(@PathVariable UUID orgId, @PathVariable String id)
+    public void delete(@PathVariable String orgId, @PathVariable String id)
             throws IOException, LoginException, InterruptedException {
         LOGGER.info("delete(org: {}, id: {})", orgId, id);
         objectStoreFactory.create(orgId).remove(id);

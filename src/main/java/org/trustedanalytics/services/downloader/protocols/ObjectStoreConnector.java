@@ -26,15 +26,14 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URI;
 import java.util.Properties;
-import java.util.UUID;
 
 public class ObjectStoreConnector implements Connector {
 
     private static final ImmutableList<String> SUPPORTED_SCHEMES = ImmutableList.of("os");
 
-    private final TokenizedObjectStoreFactory<UUID, String> objectStoreFactory;
+    private final TokenizedObjectStoreFactory<String, String> objectStoreFactory;
 
-    public ObjectStoreConnector(TokenizedObjectStoreFactory<UUID, String> objectStoreFactory) {
+    public ObjectStoreConnector(TokenizedObjectStoreFactory<String, String> objectStoreFactory) {
         this.objectStoreFactory = objectStoreFactory;
     }
 
@@ -42,9 +41,9 @@ public class ObjectStoreConnector implements Connector {
     public InputStream getInputStream(URI source, Properties properties)
             throws IOException, LoginException, InterruptedException {
 
-        UUID orgUUID = UUID.fromString(properties.getProperty("orgUUID"));
+        String orgId = properties.getProperty("orgUUID");
         String token = properties.getProperty("token");
-        return objectStoreFactory.create(orgUUID, token)
+        return objectStoreFactory.create(orgId, token)
                 .getContent(source.getPath().substring(1)); // we strip first /
     }
 

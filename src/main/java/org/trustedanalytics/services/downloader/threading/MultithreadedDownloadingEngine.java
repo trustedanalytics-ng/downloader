@@ -29,7 +29,6 @@ import org.springframework.stereotype.Component;
 import javax.annotation.Resource;
 import javax.security.auth.login.LoginException;
 import java.io.IOException;
-import java.util.UUID;
 import java.util.concurrent.ExecutorService;
 
 @Component
@@ -44,7 +43,7 @@ public class MultithreadedDownloadingEngine implements DownloadingEngine {
     @Autowired
     private RequestStatusObserverFactory requestStatusObserverFactory;
     @Autowired
-    private ObjectStoreFactory<UUID> objectStoreFactory;
+    private ObjectStoreFactory<String> objectStoreFactory;
 
     @Override
     public void download(DownloadRequest downloadRequest) throws IOException, LoginException, InterruptedException {
@@ -55,7 +54,7 @@ public class MultithreadedDownloadingEngine implements DownloadingEngine {
                 ioStreamsProvider,
                 downloadingStrategy,
                 requestStatusObserver,
-                objectStoreFactory.create(downloadRequest.getOrgUUID())
+                objectStoreFactory.create(downloadRequest.getOrgId())
         );
         downloadRequest.setState(DownloadRequest.State.QUEUED);
         // ^^^ maybe it should be after execute but it wont work with eager executor

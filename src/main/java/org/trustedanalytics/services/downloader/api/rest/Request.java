@@ -15,44 +15,24 @@
  */
 package org.trustedanalytics.services.downloader.api.rest;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.base.MoreObjects;
+import lombok.Data;
 
-import java.util.UUID;
-
+@Data
 public class Request {
 
-    private UUID orgUUID;
+    private String title;
+
+    @JsonProperty("orgUUID")
+    private String orgId;
     private String source;
     private String callback;
-
-    public UUID getOrgUUID() {
-        return orgUUID;
-    }
-
-    public void setOrgUUID(UUID orgUUID) {
-        this.orgUUID = orgUUID;
-    }
-
-    public String getCallback() {
-        return callback;
-    }
-
-    public void setCallback(String callback) {
-        this.callback = callback;
-    }
-
-    public String getSource() {
-        return source;
-    }
-
-    public void setSource(String source) {
-        this.source = source;
-    }
 
     @Override
     public String toString() {
         return MoreObjects.toStringHelper(this)
-                .add("orgUUID", orgUUID)
+                .add("orgId", orgId)
                 .add("source", source)
                 .add("callback", callback)
                 .toString();

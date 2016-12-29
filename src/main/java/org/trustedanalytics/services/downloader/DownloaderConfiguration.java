@@ -15,14 +15,12 @@
  */
 package org.trustedanalytics.services.downloader;
 
-import java.util.UUID;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import javax.annotation.Resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -40,7 +38,6 @@ import org.trustedanalytics.services.downloader.protocols.ObjectStoreConnector;
 import org.trustedanalytics.services.downloader.store.DownloadRequestsStore;
 import org.trustedanalytics.services.downloader.store.MemoryDownloadRequestStore;
 import org.trustedanalytics.store.TokenizedObjectStoreFactory;
-import org.trustedanalytics.store.config.HdfsProperties;
 import org.trustedanalytics.store.hdfs.KerberosClientConfiguration;
 import org.trustedanalytics.store.EnableObjectStore;
 
@@ -99,7 +96,7 @@ public class DownloaderConfiguration {
     }
     
     @Bean
-    public Connector objectStoreConnector(TokenizedObjectStoreFactory<UUID, String> objectStoreFactory) {
+    public Connector objectStoreConnector(TokenizedObjectStoreFactory<String, String> objectStoreFactory) {
       return new ObjectStoreConnector(objectStoreFactory);
     }
 }

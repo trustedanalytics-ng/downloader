@@ -81,7 +81,7 @@ public class DownloadTask implements Runnable {
     private Properties getInputStreamProperties() {
         Properties properties = new Properties();
         properties.setProperty("token", downloadRequest.getToken());
-        properties.setProperty("orgUUID", downloadRequest.getOrgUUID().toString());
+        properties.setProperty("orgUUID", downloadRequest.getOrgId());
         return properties;
     }
 }

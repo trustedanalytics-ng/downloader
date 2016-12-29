@@ -62,9 +62,9 @@ public class DownloadingEngineIntegrationTest {
     @Test(timeout = 1000 * 1000) // Not needed now
     public void download_notExistingSource_iOExceptionThrown()
             throws IOException, LoginException, InterruptedException {
-        UUID orgUUID = UUID.randomUUID();
+        String orgId = UUID.randomUUID().toString();
         DownloadRequest downloadRequest =
-                new DownloadRequest(makeURI("os://somehost.com/notexisting"), orgUUID, TOKEN);
+                new DownloadRequest(makeURI("os://somehost.com/notexisting"), orgId, TOKEN);
         downloadingEngine.download(downloadRequest);
         Thread.sleep(1000); // TTA: kk: use notifier with barriers?
 
@@ -77,8 +77,8 @@ public class DownloadingEngineIntegrationTest {
     @Test(timeout = 1000 * 1000) // Not needed now
     public void download_existingFile_dataAreEqual() throws IOException, LoginException, InterruptedException {
         String id1 = objectStore.save(SIMPLE_DATA);
-        UUID orgUUID = UUID.randomUUID();
-        DownloadRequest downloadRequest = new DownloadRequest(makeURI("os://somehost.com/" + id1), orgUUID, TOKEN);
+        String orgId = UUID.randomUUID().toString();
+        DownloadRequest downloadRequest = new DownloadRequest(makeURI("os://somehost.com/" + id1), orgId, TOKEN);
 
         downloadingEngine.download(downloadRequest);
         Thread.sleep(1000); // TTA: kk: use notifier with barriers?

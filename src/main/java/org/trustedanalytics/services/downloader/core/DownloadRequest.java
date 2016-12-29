@@ -15,16 +15,18 @@
  */
 package org.trustedanalytics.services.downloader.core;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Preconditions;
+import lombok.Data;
 
 import javax.validation.constraints.NotNull;
 import java.net.URI;
 import java.net.URL;
 import java.util.Objects;
-import java.util.UUID;
 import java.util.concurrent.atomic.AtomicLong;
 
+@Data
 public class DownloadRequest {
 
     public static enum State {
@@ -43,47 +45,21 @@ public class DownloadRequest {
     private String savedObjectId;
     private String objectStoreId;
     private String token;
-    private UUID orgUUID;
 
-    public DownloadRequest(URI source, UUID orgUUID, String token) {
+    @JsonProperty("orgUUID")
+    private String orgId;
+
+    public DownloadRequest(URI source, String orgId, String token) {
         this.source = source;
         this.state = State.NEW;
         this.downloadedBytes = new AtomicLong(0);
         this.token = Objects.requireNonNull(token);
-        this.orgUUID = Objects.requireNonNull(orgUUID);
-    }
-
-    public URI getSource() {
-        return source;
-    }
-
-    public URL getCallback() {
-        return callback;
-    }
-
-    public void setCallback(URL callback) {
-        this.callback = callback;
-    }
-
-    public String getId() {
-        return id;
+        this.orgId = Objects.requireNonNull(orgId);
     }
 
     public void setId(@NotNull String id) {
         Preconditions.checkState(this.id == null, "Trying to replace existing id");
         this.id = id;
-    }
-
-    public String getToken() {
-        return token;
-    }
-
-    public State getState() {
-        return state;
-    }
-
-    public void setState(State newState) {
-        this.state = newState;
     }
 
     public long getDownloadedBytes() {
@@ -92,26 +68,6 @@ public class DownloadRequest {
 
     public void incDownloadedBytes(long downloadedBytes) {
         this.downloadedBytes.addAndGet(downloadedBytes);
-    }
-
-    public String getSavedObjectId() {
-        return savedObjectId;
-    }
-
-    public void setSavedObjectId(String savedObjectId) {
-        this.savedObjectId = savedObjectId;
-    }
-
-    public String getObjectStoreId() {
-        return objectStoreId;
-    }
-
-    public void setObjectStoreId(String objectStoreId) {
-        this.objectStoreId = objectStoreId;
-    }
-
-    public UUID getOrgUUID() {
-        return orgUUID;
     }
 
     @Override
