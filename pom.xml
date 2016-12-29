@@ -7,7 +7,7 @@
         <connection>scm:git:git@downloader:trustedanalytics/downloader.git</connection>
         <tag>HEAD</tag>
     </scm>
-    <version>0.8.7</version>
+    <version>0.8.8</version>
     <name>Downloader</name>
     <description>Downloader</description>
 
@@ -20,8 +20,8 @@
     <properties>
         <start-class>org.trustedanalytics.services.downloader.Main</start-class>
 
-        <jacoco-measurement-instructions>0.499</jacoco-measurement-instructions>    <!-- Value <0.000, 1.000>, at least 3 places after coma -->
-        <jacoco-measurement-branches>0.437</jacoco-measurement-branches>            <!-- Value <0.000, 1.000>, at least 3 places after coma -->
+        <jacoco-measurement-instructions>0.400</jacoco-measurement-instructions>    <!-- Value <0.000, 1.000>, at least 3 places after coma -->
+        <jacoco-measurement-branches>0.200</jacoco-measurement-branches>            <!-- Value <0.000, 1.000>, at least 3 places after coma -->
         <jacoco-measurement-lines>0.477</jacoco-measurement-lines>                  <!-- Value <0.000, 1.000>, at least 3 places after coma -->
         <jacoco-measurement-classes>0.720</jacoco-measurement-classes>              <!-- Value <0.000, 1.000>, at least 3 places after coma -->
         <docker.imageName>${project.artifactId}</docker.imageName>
