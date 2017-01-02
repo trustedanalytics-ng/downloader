@@ -30,7 +30,8 @@ public class SimpleDownloadingStrategy implements DownloadingStrategy {
 
     @Override
     public String download(InputStream in, ObjectStore store,
-                           RequestStatusObserver requestStatusObserver) throws IOException {
-        return store.save(streamDecoder.tryToDecode(in));
+                           RequestStatusObserver requestStatusObserver,
+                           String dataSetName) throws IOException {
+        return store.save(streamDecoder.tryToDecode(in), dataSetName);
     }
 }

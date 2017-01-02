@@ -15,7 +15,6 @@
  */
 package org.trustedanalytics.services.downloader.api.rest;
 
-
 import org.trustedanalytics.services.downloader.DownloaderConfigInTests;
 import org.trustedanalytics.store.ObjectStore;
 
@@ -72,7 +71,7 @@ public class TestRestFileStoreService {
     private String addDataToStore() throws IOException {
         byte[] bytes1 = new byte[]{1, 2, 3, 4};
 
-        return objectStore.save(bytes1);
+        return objectStore.save(bytes1, "dataSetName");
     }
 
 

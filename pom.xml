@@ -7,7 +7,7 @@
         <connection>scm:git:git@downloader:trustedanalytics/downloader.git</connection>
         <tag>HEAD</tag>
     </scm>
-    <version>0.8.8</version>
+    <version>0.8.9</version>
     <name>Downloader</name>
     <description>Downloader</description>
 
@@ -168,7 +168,7 @@
         <dependency>
             <groupId>org.trustedanalytics</groupId>
             <artifactId>object-store</artifactId>
-            <version>0.5.3</version>
+            <version>0.5.4</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.slf4j</groupId>

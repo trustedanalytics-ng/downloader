@@ -65,7 +65,7 @@ public class RestService {
 
         LOGGER.info("add({})", request);
         DownloadRequest downloadRequest =
-                new DownloadRequest(URI.create(request.getSource()), request.getOrgId(), extractToken());
+                new DownloadRequest(URI.create(request.getSource()), request.getOrgId(), extractToken(), request.getTitle());
         if (request.getCallback() != null) {
             downloadRequest.setCallback(new URL(request.getCallback()));
         }

@@ -63,7 +63,7 @@ public class DownloadTask implements Runnable {
         requestStatusObserver.notifyStarted();
         try (InputStream in = ioStreamsProvider
                 .getInputStream(downloadRequest.getSource(), getInputStreamProperties())) {
-            String objectId = downloadingStrategy.download(in, objectStore, requestStatusObserver);
+            String objectId = downloadingStrategy.download(in, objectStore, requestStatusObserver, downloadRequest.getDataSetName());
             LOGGER.info("Finished task: {}", downloadRequest);
             downloadRequest.setSavedObjectId(objectId);
             downloadRequest.setObjectStoreId(objectStore.getId());

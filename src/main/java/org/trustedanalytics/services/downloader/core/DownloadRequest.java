@@ -45,16 +45,18 @@ public class DownloadRequest {
     private String savedObjectId;
     private String objectStoreId;
     private String token;
+    private String dataSetName;
 
     @JsonProperty("orgUUID")
     private String orgId;
 
-    public DownloadRequest(URI source, String orgId, String token) {
+    public DownloadRequest(URI source, String orgId, String token, String dataSetName) {
         this.source = source;
         this.state = State.NEW;
         this.downloadedBytes = new AtomicLong(0);
         this.token = Objects.requireNonNull(token);
         this.orgId = Objects.requireNonNull(orgId);
+        this.dataSetName = Objects.requireNonNull(dataSetName, "dataSetName");
     }
 
     public void setId(@NotNull String id) {

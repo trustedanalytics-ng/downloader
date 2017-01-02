@@ -16,7 +16,6 @@
 package org.trustedanalytics.services.downloader.api.rest;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.google.common.base.MoreObjects;
 import lombok.Data;
 
 @Data
@@ -28,13 +27,4 @@ public class Request {
     private String orgId;
     private String source;
     private String callback;
-
-    @Override
-    public String toString() {
-        return MoreObjects.toStringHelper(this)
-                .add("orgId", orgId)
-                .add("source", source)
-                .add("callback", callback)
-                .toString();
-    }
 }

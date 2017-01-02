@@ -28,8 +28,8 @@ public interface DownloadingStrategy {
     /**
      * Copies all data from one stream to another one
      */
-    default void download(InputStream in, ObjectStore store) throws IOException {
-        download(in, store, RequestStatusObserver.EMPTY_REQUEST_STATUS_OBSERVER);
+    default void download(InputStream in, ObjectStore store, String dataSetName) throws IOException {
+        download(in, store, RequestStatusObserver.EMPTY_REQUEST_STATUS_OBSERVER, dataSetName);
     }
 
     /**
@@ -37,7 +37,7 @@ public interface DownloadingStrategy {
      *
      * @return id that will make object available within object store
      */
-    String download(InputStream in, ObjectStore store, RequestStatusObserver requestStatusObserver)
+    String download(InputStream in, ObjectStore store, RequestStatusObserver requestStatusObserver, String dataSetName)
             throws IOException;
 
 }
