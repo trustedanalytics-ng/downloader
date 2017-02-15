@@ -1,6 +1,3 @@
-[![Build Status](https://travis-ci.org/trustedanalytics/downloader.svg?branch=master)](https://travis-ci.org/trustedanalytics/downloader)
-[![Dependency Status](https://www.versioneye.com/user/projects/5723669dba37ce004309f254/badge.svg?style=flat)](https://www.versioneye.com/user/projects/5723669dba37ce004309f254)
-
 DAS downloader service
 ======================
 DAS downloader service, is a service for DAS which download datasets from internet. It is a Spring Boot application build by Maven.
